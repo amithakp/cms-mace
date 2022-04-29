@@ -1,0 +1,18 @@
+.heading{
+    font-size: 25px;
+    text-align: center;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+.container{
+    margin-top: 53px;
+    text-align: justify;
+    /* border: 2px solid #383431; */
+    /* width: fit-content; */
+}
+
+.new-container{
+    display: flex;
+    justify-content: flex-end;
+    
+}

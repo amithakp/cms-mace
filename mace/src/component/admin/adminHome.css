@@ -1,0 +1,16 @@
+ .card-container .container {
+   
+    /* padding: 10px; */
+    align-items: center;
+    background-image: url(../../../public/images/blue.jpg);
+}
+.card{
+    width: 100%;
+    align-items: center;
+}
+.card .card-img-top{
+    padding: 10px;
+    width:100px;
+    border: 1px solid blue;
+}
+
