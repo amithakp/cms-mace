@@ -1,37 +1,31 @@
 import React,{Component} from 'react';
 import AdminHeader from '../adminHeader';
-import New  from './new';
-import Edit from './edit';
+// import New  from './new';
+// import Edit from './edit';
 
-const reliefCenterGet ="http://localhost:8121/reliefCenter";
+const departmentGet ="http://localhost:8020/department";
 
 class AdminDepartment extends Component{
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid:'',
-            contact_Number:'',
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:'',
-            ReliefCenterData:'',
-            // index:''
+            department:'',
+            course:'',
+           
         }
     }
     //  edit = (data) =>{
     //     console.log(data, "item clicked")
     //  }
-     renderTable =(ReliefCenterData)=> {
-        if(ReliefCenterData){
-            return ReliefCenterData.map((item,index)=>{
+     renderTable =(departmentData)=> {
+        if(departmentData){
+            return departmentData.map((item,index)=>{
                 return (
                     <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
-                        <td>{item.reliefCenterName}</td>
-                        <td>{item.contact_Number}</td>
-                        <td>{item.totalAccomodation}</td>
-                        <td>{item.vaccancy}</td>
-                        <td>
+                        <td>{item.department}</td>
+                        <td>{item.course}</td>
+                        {/* <td>
                             <div className="btn-group" role="group" aria-label="Basic outlined example">
                             <button  type="button" onClick={ () => this.setState({
                                 contact_Number:item.contact_Number,
@@ -49,7 +43,7 @@ class AdminDepartment extends Component{
                                 vaccancy={this.state.vaccancy}/>
                             <button type="button" className="btn btn-outline-danger">Delete</button>
                             </div>
-                        </td>
+                        </td> */}
                     </tr>
                 )
             })
@@ -64,11 +58,11 @@ class AdminDepartment extends Component{
             <div className ="container">
                 <div className="new-container">
                     {/* <Link to="reliefCenter/addNew" className="btn btn-primary">New</Link> */}
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         New
-                    </button>
+                    </button> */}
                 </div>
-                <New/>
+                {/* <New/> */}
                 <table className="table table-hover table-light">
                     <thead>
                         <tr>
@@ -78,7 +72,7 @@ class AdminDepartment extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {this.renderTable(this.state.ReliefCenterData)}   */}
+                        {this.renderTable(this.state.departmentData)}  
                     </tbody>
                 </table>
             </div>
@@ -86,10 +80,10 @@ class AdminDepartment extends Component{
         )
     }
     componentDidMount(){
-        fetch(reliefCenterGet, {method:'GET'})
+        fetch(departmentGet, {method:'GET'})
         .then((res) => res.json ())
         .then((data) => {
-            this.setState({ReliefCenterData:data})
+            this.setState({departmentData:data})
             console.log(data);
         })
     }

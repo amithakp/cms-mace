@@ -1,30 +1,29 @@
 import React,{Component} from 'react';
 import '../admin/bus/bus.css';
-const reliefCenterGet ="http://localhost:8121/reliefCenter";
+
+const busGet ="http://localhost:8020/bus";
 
 class Bus extends Component{
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid:'',
-            contact_Number:'',
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:'',
-            ReliefCenterData:'',
+            bus_No:'',
+            bus_Route:'',
+            morning_Time: '',
+            evening_Time: '',
         }
     }
    
-     renderTable =(ReliefCenterData)=> {
-        if(ReliefCenterData){
-            return ReliefCenterData.map((item,index)=>{
+    renderTable =(busData)=> {
+        if(busData){
+            return busData.map((item,index)=>{
                 return (
                     <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
-                        <td>{item.reliefCenterName}</td>
-                        <td>{item.contact_Number}</td>
-                        <td>{item.totalAccomodation}</td>
-                        <td>{item.vaccancy}</td>
+                        <td>{item.bus_No}</td>
+                        <td>{item.bus_Route}</td>
+                        <td>{item.morning_Time}</td>
+                        <td>{item.evening_Time}</td>
                         
                     </tr>
                 )
@@ -49,7 +48,7 @@ class Bus extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.renderTable(this.state.ReliefCenterData)}  
+                        {this.renderTable(this.state.busData)} 
                     </tbody>
                 </table>
             </div>
@@ -57,14 +56,13 @@ class Bus extends Component{
         )
     }
     componentDidMount(){
-        fetch(reliefCenterGet, {method:'GET'})
+        fetch(busGet, {method:'GET'})
         .then((res) => res.json ())
         .then((data) => {
-            this.setState({ReliefCenterData:data})
+            this.setState({busData:data})
             console.log(data);
         })
     }
 }
-
 
 export default Bus;

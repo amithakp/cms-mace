@@ -14,35 +14,46 @@ const AdminHome = () => {
                     <div className="container">
                         <div className="row g-3">
                             <div className=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <div class="card">
-                                    <FontAwesomeIcon icon={faBus} class="card-img-top" alt="bus"/>
-                                    <div class="card-body">
-                                        <h5 class="card-title">BUS</h5>
-                                        <p class="card-text">You can find your Bus route here.</p>
+                                <div className="card">
+                                    <FontAwesomeIcon icon={faBus} className="card-img-top" alt="bus"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">BUS</h5>
+                                        <p className="card-text">You can find your Bus route here.</p>
                                         <Link to ="/adminBus" className="btn btn-primary">Click</Link>
                                     </div>
                                 </div>
                             </div>
                             <div className=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <div class="card">
-                                    <FontAwesomeIcon icon={faLink} class="card-img-top" alt="meet link"/>
-                                    <div class="card-body">
-                                        <h5 class="card-title">MEET LINK</h5>
-                                        <p class="card-text">You can find your Meet link here.</p>
+                                <div className="card">
+                                    <FontAwesomeIcon icon={faLink} className="card-img-top" alt="meet link"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">MEET LINK</h5>
+                                        <p className="card-text">You can find your Meet link here.</p>
                                         <Link to ="/adminMeet" className="btn btn-primary">Click</Link>
                                     </div>
                                 </div>
                             </div>
+                            
                             <div className=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
-                                <div class="card">
-                                    <FontAwesomeIcon icon={faBuildingUser} class="card-img-top" alt="department"/>
-                                    <div class="card-body">
-                                        <h5 class="card-title">DEPARTMENT</h5>
-                                        <p class="card-text">You can find your Department here.</p>
-                                        <Link to ="/adminDepartment" class="btn btn-primary">Click</Link>
+                                <div className="card">
+                                    <FontAwesomeIcon icon={faBuildingUser} className="card-img-top" alt="department"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">Department</h5>
+                                        <p className="card-text">You can find your Department here.</p>
+                                        <Link to ="/adminDepartment" className="btn btn-primary">Click</Link>
                                     </div>
                                 </div>
                             </div>
+                            {/* <div className=" col-lg-4 col-md-4 col-sm-12 col-xs-12">
+                                <div className="card">
+                                    <FontAwesomeIcon icon={faCalendar} className="card-img-top" alt="timetable"/>
+                                    <div className="card-body">
+                                        <h5 className="card-title">Time Table</h5>
+                                        <p className="card-text">You can find your Timetable here.</p>
+                                        <Link to ="/adminTimetable" className="btn btn-primary">Click</Link>
+                                    </div>
+                                </div>
+                            </div> */}
                         </div>
                     </div>
                 </div>

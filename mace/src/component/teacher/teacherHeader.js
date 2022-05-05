@@ -1,7 +1,21 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
+const url ="http://localhost:4000/api/auth/teacherInfo";
 class TeacherHeader extends Component{
+    constructor(props){
+        super()
+         this.state={
+            userdata:''
+         }
+    }
+    handleLogout = () => {
+        this.setState({userdata:''})
+        localStorage.removeItem('userdata')
+        localStorage.removeItem('ltk')
+        this.props.history.push('/')
+    }
     render() {
         return (
         <>  
@@ -37,14 +51,27 @@ class TeacherHeader extends Component{
                     </ul>
                 </div>
                 <form className="d-flex">
-                        <Link to="/registerVolunteer"  className="btn btn-success">Login</Link>
+                    <button  onClick={this.handleLogout} className="btn btn-danger" type="submit">Log Out</button>
                 </form>
             </div>
         </nav>
          </>
         )
     }
-    
+    componentDidMount(){
+        fetch(url,{
+            method:'GET',
+            headers:{
+                'x-access-token':localStorage.getItem('ltk')
+            }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            this.setState({
+                userdata:data
+            })
+        })
+    }
 }
 
-export default TeacherHeader;    
+export default withRouter(TeacherHeader);    

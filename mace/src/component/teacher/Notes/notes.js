@@ -1,31 +1,27 @@
 import React,{Component} from 'react';
 import TeacherHeader from '../teacherHeader';
 
-const reliefCenterGet ="http://localhost:8121/reliefCenter";
-
+const teacherGet ="http://localhost:4000/api/auth/teacherInfo";
 class TeacherNotes extends Component{
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid:'',
-            contact_Number:'',
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:'',
-            ReliefCenterData:'',
+            name:'',
+            course:'',
+            subject:'',
+            userData:'',
         }
     }
    
-     renderTable =(ReliefCenterData)=> {
-        if(ReliefCenterData){
-            return ReliefCenterData.map((item,index)=>{
+     renderTable =(userData)=> {
+        if(userData){
+            return userData.map((item,index)=>{
+                console.log(userData)
                 return (
                     <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
-                        <td>{item.reliefCenterName}</td>
-                        <td>{item.contact_Number}</td>
-                        <td>{item.totalAccomodation}</td>
-                        <td>{item.vaccancy}</td>
+                        <td>{item.course}</td>
+                        <td>{item.subject}</td>
                         
                     </tr>
                 )
@@ -51,7 +47,13 @@ class TeacherNotes extends Component{
                         </tr>
                     </thead>
                     <tbody>
-                        {this.renderTable(this.state.ReliefCenterData)}  
+                        
+                        <tr>
+                            <td>{this.state.userData.index}</td>
+                            <td>{this.state.userData.course}</td>
+                            <td>{this.state.userData.subject}</td>
+                        </tr>
+                        {/* {this.renderTable(this.state.teacherGet)}   */}
                     </tbody>
                 </table>
             </div>
@@ -59,11 +61,17 @@ class TeacherNotes extends Component{
         )
     }
     componentDidMount(){
-        fetch(reliefCenterGet, {method:'GET'})
-        .then((res) => res.json ())
+        fetch(teacherGet,{
+            method:'GET',
+            headers:{
+                'x-access-token':localStorage.getItem('ltk')
+            }
+        })
+        .then((res) => res.json())
         .then((data) => {
-            this.setState({ReliefCenterData:data})
-            console.log(data);
+            this.setState({
+                userData:data
+            })
         })
     }
 }

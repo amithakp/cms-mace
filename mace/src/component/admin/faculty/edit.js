@@ -1,40 +1,46 @@
 import React, { Component } from 'react';
 
-const editReliefCentre ="http://localhost:8121/reliefCenter";
+const editTeacher ="http://localhost:4000/api/auth/teacher";
 
 class Edit extends Component {
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid:'',
-            contact_Number:'',
-            disaster_id: 1,
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:''
+            name: '',
+            email: '',
+            registrationNumber: '',
+            department:'',
+            course: '',
+            subject: '',
+            password: '',
+            role: ''
         }
     }
-    handleUpdateReliefCentre  = (event) =>{
-        fetch(editReliefCentre,{
+    handleUpdate  = (event) =>{
+        fetch(editTeacher,{
             method:'PUT',
             headers:{
                 'accept': 'application/json',
                 'content-type': 'application/json'
             },
             body:JSON.stringify({
-                contact_Number:event.target.contact_Number.value,
-                reliefCenterName:event.target.reliefCenterName.value,
-                totalAccomodation:event.target.totalAccomodation.value,
-                vaccancy:event.target.vaccancy.value
+                name:event.target.name.value,
+                email:event.target.email.value,
+                department:event.target.department.value,
+                course:event.target.course.value,
+                subject:event.target.subject.value,
+                password:event.target.password.value
             })
         })
         .then(res => res.json())
         .then((result) =>{
-            console.log(result,"inside handleEditReliefCentre")
-            this.setState({[this.state.contact_Number]:event.target.contact_Number,
-                [this.state.reliefCenterName]:event.target.reliefCenterName,
-                [this.state.totalAccomodation]:event.target.totalAccomodation,
-                [this.state.vaccancy]:event.target.vaccancy
+            console.log(result,"inside handleEditTeacher")
+            this.setState({[this.state.name]:event.target.name,
+                [this.state.email]:event.target.email,
+                [this.state.department]:event.target.department,
+                [this.state.course]:event.target.course,
+                [this.state.subject]:event.target.subject,
+                [this.state.password]:event.target.password
             })
         })
         alert("Successfully Added")
@@ -64,16 +70,29 @@ class Edit extends Component {
                                             <label>Name</label>
                                             <input type="text" name="busNo" defaultValue={this.props.contact_Number} onChange={this.handleChange} className="form-control" placeholder="Contact Number" />
                                         </div>
-                                        <div className="mb-3">
+                                        {/* <div className="mb-3">
                                             <label>Register No</label>
                                             <input type="text" name="busNo" defaultValue={this.props.contact_Number} onChange={this.handleChange} className="form-control" placeholder="Contact Number" />
-                                        </div>
+                                        </div> */}
                                         <div className="mb-3">
                                             <label>Department</label>
-                                            <input type="text" name="busNo" defaultValue={this.props.contact_Number} onChange={this.handleChange} className="form-control" placeholder="Contact Number" />
+                                            {/* <input type="text" name="reliefCenterName" value={this.state.reliefCenterName} onChange={this.handleChange} className="form-control" placeholder="Relief centre name"/> */}
+                                            <select id="options" name="department" defaultValue={this.props.department} onChange={this.handleChange} className="form-control">
+                                                <option>Select</option>
+                                                <option value="Computer Application">Computer Application</option>
+                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                            </select>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Course</label>
+                                            <input type="text" name="course" defaultValue={this.props.course} onChange={this.handleChange} className="form-control" placeholder="course" />
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Subject</label>
+                                            <input type="text" name="subject" defaultValue={this.props.subject} onChange={this.handleChange} className="form-control" placeholder="Subject" />
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" onClick={this.handleUpdateReliefCentre} className="btn btn-success d-grid gap-2 ">
+                                            <button type="submit" onClick={this.handleUpdate} className="btn btn-success d-grid gap-2 ">
                                               Update 
                                             </button>
                                         </div>   

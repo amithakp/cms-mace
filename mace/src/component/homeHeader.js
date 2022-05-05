@@ -14,23 +14,23 @@ class HomeHeader extends Component{
                 <div className="collapse navbar-collapse" id="navbarNavDropdown">
                     <ul className="navbar-nav">
                             <li className="nav-item">
-                                <Link to ="/home" className="nav-link" href="#">HOME</Link>
+                                <Link to ="/hodLogin" className="nav-link" href="#">HOD</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to ="/studentredirect" className="nav-link" href="#">STUDENT</Link>
+                                <Link to ="/studentLogin" className="nav-link" href="#">STUDENT</Link>
                             </li>
                             <li className="nav-item">
-                                <Link to ="/faculty" className="nav-link" href="#">FACULTY</Link>
+                                <Link to ="/teacherLogin" className="nav-link" href="#">FACULTY</Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link to ="/adminredirect" className="nav-link" href="#">ADMIN</Link>
-                            </li>
+                            </li> */}
                             <li className="nav-item">
                                 <Link to ="/department" className="nav-link" href="#">DEPARTMENT</Link>
                             </li>
-                            <li className="nav-item">
+                            {/* <li className="nav-item">
                                 <Link to ="/syllabus" className="nav-link" href="#">SYLLABUS</Link>
-                            </li>
+                            </li> */}
                             {/* <li className="nav-item">
                                 <Link to ="/achevements" className="nav-link" href="#">ACHIEVEMENTS</Link>
                             </li> */}
@@ -43,9 +43,9 @@ class HomeHeader extends Component{
                             
                         </ul>
                 </div>
-                <form className="d-flex">
-                        <Link to="/registerVolunteer"  className="btn btn-success">Login</Link>
-                </form>
+                {/* <form className="d-flex">
+                        <Link to="/login"  className="btn btn-success">Login</Link>
+                </form> */}
             </div>
         </nav>
          </>

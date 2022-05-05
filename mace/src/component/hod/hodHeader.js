@@ -1,7 +1,24 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
+
+const url ="http://localhost:4000/api/auth/hodInfo";
 
 class HodHeader extends Component{
+    constructor(props){
+        super()
+         this.state={
+            userdata:''
+         }
+    }
+
+    handleLogout = () => {
+        this.setState({userdata:''})
+        localStorage.removeItem('userdata')
+        localStorage.removeItem('ltk')
+        this.props.history.push('/')
+    }
+
     render() {
         return (
         <>  
@@ -15,6 +32,9 @@ class HodHeader extends Component{
                     <ul className="navbar-nav">
                         <li className="nav-item">
                             <Link to ="/hodredirect" className="nav-link">HOME</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to ="/hodStudent" className="nav-link">STUDENT</Link>
                         </li>
                         <li className="nav-item">
                             <Link to ="/hodAttendance" className="nav-link" href="#">ATTENDANCE</Link>
@@ -31,14 +51,28 @@ class HodHeader extends Component{
                     </ul>
                 </div>
                 <form className="d-flex">
-                        <Link to="/registerVolunteer"  className="btn btn-success">Login</Link>
+                    <button  onClick={this.handleLogout} className="btn btn-danger" type="submit">Log Out</button>
                 </form>
             </div>
         </nav>
          </>
         )
     }
+    componentDidMount(){
+        fetch(url,{
+            method:'GET',
+            headers:{
+                'x-access-token':localStorage.getItem('ltk')
+            }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            this.setState({
+                userdata:data
+            })
+        })
+    }
     
 }
 
-export default HodHeader;    
+export default withRouter(HodHeader);    

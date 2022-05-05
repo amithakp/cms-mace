@@ -1,33 +1,26 @@
 import React,{Component} from 'react';
 
-const reliefCenterGet ="http://localhost:8121/reliefCenter";
+const meetGet ="http://localhost:8020/meet";
 
 class Meet extends Component{
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid:'',
-            contact_Number:'',
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:'',
-            ReliefCenterData:'',
-            // index:''
+            course:'',
+            semester: '',
+            meet_Link:'',
         }
     }
-    //  edit = (data) =>{
-    //     console.log(data, "item clicked")
-    //  }
-     renderTable =(ReliefCenterData)=> {
-        if(ReliefCenterData){
-            return ReliefCenterData.map((item,index)=>{
+    
+    renderTable =(meetData)=> {
+        if(meetData){
+            return meetData.map((item,index)=>{
                 return (
                     <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
-                        <td>{item.reliefCenterName}</td>
-                        <td>{item.contact_Number}</td>
-                        <td>{item.totalAccomodation}</td>
-                        <td>{item.vaccancy}</td>
+                        <td>{item.course}</td>
+                        <td>{item.semester}</td>
+                        <td>{item.meet_Link}</td>
                     </tr>
                 )
             })
@@ -45,13 +38,12 @@ class Meet extends Component{
                         <tr>
                         <th scope="col">No.</th>
                         <th scope="col">Course</th>
-                        <th scope="col">Subject</th>
                         <th scope="col">Semester</th>
                         <th scope="col">Meet Link</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {this.renderTable(this.state.ReliefCenterData)}   */}
+                        {this.renderTable(this.state.meetData)}  
                     </tbody>
                 </table>
             </div>
@@ -59,10 +51,10 @@ class Meet extends Component{
         )
     }
     componentDidMount(){
-        fetch(reliefCenterGet, {method:'GET'})
+        fetch(meetGet, {method:'GET'})
         .then((res) => res.json ())
         .then((data) => {
-            this.setState({ReliefCenterData:data})
+            this.setState({meetData:data})
             console.log(data);
         })
     }

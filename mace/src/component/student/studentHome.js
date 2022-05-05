@@ -39,7 +39,9 @@ const StudentHome = () => {
                                     <div class="card-body">
                                         <h5 class="card-title">Time Table</h5>
                                         <p class="card-text">You can find your Time table here.</p>
-                                        <Link to ="/timeTable" class="btn btn-primary">Click</Link>
+                                        <a href ="https://ktu.edu.in/home.htm;jsessionid=564C9D57428BB814DA4E81A691C6FAD6" class="btn btn-primary" target="_blank" rel="noreferrer noopener">Click</a>
+
+                                        {/* <Link to ="/timeTable" class="btn btn-primary">Click</Link> */}
                                     </div>
                                 </div>
                             </div>
@@ -49,7 +51,7 @@ const StudentHome = () => {
                                     <div class="card-body">
                                         <h5 class="card-title">Results</h5>
                                         <p class="card-text">You can find your Result link here.</p>
-                                        <a href ="https://ktu.edu.in/home.htm;jsessionid=564C9D57428BB814DA4E81A691C6FAD6" class="btn btn-primary" target="_blank">Click</a>
+                                        <a href ="https://ktu.edu.in/home.htm;jsessionid=564C9D57428BB814DA4E81A691C6FAD6" class="btn btn-primary" target="_blank" rel="noreferrer noopener">Click</a>
                                     </div>
                                 </div>
                             </div>
@@ -59,7 +61,7 @@ const StudentHome = () => {
                                     <div class="card-body">
                                         <h5 class="card-title">KTU SITE</h5>
                                         <p class="card-text">You can find your KTU site link here.</p>
-                                        <a href ="https://ktu.edu.in/home.htm;jsessionid=564C9D57428BB814DA4E81A691C6FAD6" class="btn btn-primary" target="_blank">Click</a>
+                                        <a href ="https://ktu.edu.in/home.htm;jsessionid=564C9D57428BB814DA4E81A691C6FAD6" class="btn btn-primary" target="_blank" rel="noreferrer noopener">Click</a>
                                     </div>
                                 </div>
                             </div>

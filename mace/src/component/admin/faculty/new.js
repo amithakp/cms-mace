@@ -1,21 +1,23 @@
 import React, { Component } from 'react';
 
-const addNewReliefCentre ="http://localhost:8121/reliefCenter";
+const addNewTeacher ="http://localhost:4000/api/auth/teacherRegister";
 
 class New  extends Component {
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid: Math.floor(Math.random()*1000),
-            disaster_id: 1,
-            contact_Number: '',
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:''
+            name: '',
+            email: '',
+            registrationNumber: '',
+            department:'',
+            course: '',
+            subject: '',
+            password: '',
+            role: ''
         }
     }
-    handleAddNewReliefCentre  = () =>{
-        fetch(addNewReliefCentre,{
+    handleAddTeacher  = () =>{
+        fetch(addNewTeacher,{
             method:'POST',
             headers:{
                 'accept': 'application/json',
@@ -43,21 +45,42 @@ class New  extends Component {
                             <div className="modal-body">
                                 <div className="container">
                                     <div className="w-75 mx-auto shadow p-5">
-                                        <h2 className="text-center mb-4">Add Faculty</h2>
+                                        <h2 className="text-center mb-4">Add Teacher</h2>
                                         <div className="mb-3">
                                             <label>Name</label>
-                                            <input type="text" name="reliefCenterName" value={this.state.reliefCenterName} onChange={this.handleChange} className="form-control" placeholder="Relief centre name"/>
+                                            <input type="text" name="name" value={this.state.name} onChange={this.handleChange} className="form-control" placeholder="name"/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Email</label>
+                                            <input type="text" name="email" value={this.state.email} onChange={this.handleChange} className="form-control" placeholder="email"/>
                                         </div>
                                         <div className="mb-3">
                                             <label>Register No</label>
-                                            <input type="text" name="reliefCenterName" value={this.state.reliefCenterName} onChange={this.handleChange} className="form-control" placeholder="Relief centre name"/>
+                                            <input type="text" name="registrationNumber" value={this.state.registrationNumber} onChange={this.handleChange} className="form-control" placeholder="registrationNumber"/>
                                         </div>
                                         <div className="mb-3">
                                             <label>Department</label>
-                                            <input type="text" name="reliefCenterName" value={this.state.reliefCenterName} onChange={this.handleChange} className="form-control" placeholder="Relief centre name"/>
+                                            {/* <input type="text" name="reliefCenterName" value={this.state.reliefCenterName} onChange={this.handleChange} className="form-control" placeholder="Relief centre name"/> */}
+                                            <select id="options" name="department" onChange={this.handleChange} value={this.state.department} className="form-control">
+                                                <option>Select</option>
+                                                <option value="Computer Application">Computer Application</option>
+                                                <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                            </select>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Course</label>
+                                            <input type="text" name="course" value={this.state.course} onChange={this.handleChange} className="form-control" placeholder="course"/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Subject</label>
+                                            <input type="text" name="subject" value={this.state.subject} onChange={this.handleChange} className="form-control" placeholder="Subject"/>
+                                        </div>
+                                        <div className="mb-3">
+                                            <label>Password</label>
+                                            <input type="text" name="password" value={this.state.password} onChange={this.handleChange} className="form-control" placeholder="password"/>
                                         </div>
                                         <div className="d-grid gap-2">
-                                            <button type="submit" onClick={this.handleAddNewReliefCentre} className="btn btn-success d-grid gap-2 ">
+                                            <button type="submit" onClick={this.handleAddTeacher} className="btn btn-success d-grid gap-2 ">
                                                 Add
                                             </button>
                                         </div>   

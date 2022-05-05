@@ -1,7 +1,23 @@
 import React,{Component} from 'react';
 import {Link} from 'react-router-dom';
+import {withRouter} from 'react-router-dom';
 
+const url ="http://localhost:4000/api/auth/adminInfo";
 class AdminHeader extends Component{
+    constructor(props){
+        super()
+         this.state={
+            userdata:''
+         }
+    }
+
+    handleLogout = () => {
+        this.setState({userdata:''})
+        localStorage.removeItem('userdata')
+        localStorage.removeItem('ltk')
+        this.props.history.push('/')
+    }
+
     render() {
         return (
         <>  
@@ -27,9 +43,12 @@ class AdminHeader extends Component{
                         </li> */}
                         <li className="nav-item">
                                 <Link to ="/adminStudent" className="nav-link" href="#">STUDENT</Link>
-                            </li>
+                        </li>
                         <li className="nav-item">
-                            <Link to ="/adminFaculty" className="nav-link" href="#">FACULTY</Link>
+                                <Link to ="/adminHod" className="nav-link" href="#">HOD</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to ="/adminFaculty" className="nav-link" href="#">TEACHER</Link>
                         </li>
                         <li className="nav-item">
                             <Link to ="/adminDepartment" className="nav-link" href="#">DEPARTMENT</Link>
@@ -40,9 +59,9 @@ class AdminHeader extends Component{
                         <li className="nav-item">
                             <Link to ="/adminMaceUpdation" className="nav-link" href="#">MACE UPDATION</Link>
                         </li>
-                        <li className="nav-item">
+                        {/* <li className="nav-item">
                             <Link to ="/adminSyllabus" className="nav-link" href="#">SYLLABUS</Link>
-                        </li>
+                        </li> */}
                         <li className="nav-item">
                             <Link to ="/adminChatroom" className="nav-link" href="#">CHATROOM</Link>
                         </li>
@@ -53,14 +72,29 @@ class AdminHeader extends Component{
                     </ul>
                 </div>
                 <form className="d-flex">
-                        <Link to="/registerVolunteer"  className="btn btn-success">Login</Link>
+                    <button  onClick={this.handleLogout} className="btn btn-danger" type="submit">Log Out</button>
                 </form>
             </div>
         </nav>
          </>
         )
     }
+
+    componentDidMount(){
+        fetch(url,{
+            method:'GET',
+            headers:{
+                'x-access-token':localStorage.getItem('ltk')
+            }
+        })
+        .then((res) => res.json())
+        .then((data) => {
+            this.setState({
+                userdata:data
+            })
+        })
+    }
     
 }
 
-export default AdminHeader;    
+export default withRouter(AdminHeader);    

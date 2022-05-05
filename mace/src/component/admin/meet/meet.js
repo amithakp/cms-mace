@@ -1,37 +1,32 @@
 import React,{Component} from 'react';
 import AdminHeader from '../adminHeader';
-import New  from './new';
-import Edit from './edit';
+// import New  from './new';
+// import Edit from './edit';
 
-const reliefCenterGet ="http://localhost:8121/reliefCenter";
+const meetGet ="http://localhost:8020/meet";
 
 class AdminMeet extends Component{
     constructor(props){
         super(props)
         this.state = {
-            disaster_reliefCenterid:'',
-            contact_Number:'',
-            reliefCenterName: '',
-            totalAccomodation:'',
-            vaccancy:'',
-            ReliefCenterData:'',
-            // index:''
+            course:'',
+            semester: '',
+            meet_Link:'',
         }
     }
     //  edit = (data) =>{
     //     console.log(data, "item clicked")
     //  }
-     renderTable =(ReliefCenterData)=> {
-        if(ReliefCenterData){
-            return ReliefCenterData.map((item,index)=>{
+     renderTable =(meetData)=> {
+        if(meetData){
+            return meetData.map((item,index)=>{
                 return (
                     <tr key={item._id}>
                         <th scope="row">{index + 1}</th>
-                        <td>{item.reliefCenterName}</td>
-                        <td>{item.contact_Number}</td>
-                        <td>{item.totalAccomodation}</td>
-                        <td>{item.vaccancy}</td>
-                        <td>
+                        <td>{item.course}</td>
+                        <td>{item.semester}</td>
+                        <td>{item.meet_Link}</td>
+                        {/* <td>
                             <div className="btn-group" role="group" aria-label="Basic outlined example">
                             <button  type="button" onClick={ () => this.setState({
                                 contact_Number:item.contact_Number,
@@ -49,7 +44,7 @@ class AdminMeet extends Component{
                                 vaccancy={this.state.vaccancy}/>
                             <button type="button" className="btn btn-outline-danger">Delete</button>
                             </div>
-                        </td>
+                        </td> */}
                     </tr>
                 )
             })
@@ -64,11 +59,11 @@ class AdminMeet extends Component{
             <div className ="container">
                 <div className="new-container">
                     {/* <Link to="reliefCenter/addNew" className="btn btn-primary">New</Link> */}
-                    <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                    {/* <button type="button" className="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                         New
-                    </button>
+                    </button> */}
                 </div>
-                <New/>
+                {/* <New/> */}
                 <table className="table table-hover table-light">
                     <thead>
                         <tr>
@@ -76,11 +71,11 @@ class AdminMeet extends Component{
                         <th scope="col">Course</th>
                         <th scope="col">Semester</th>
                         <th scope="col">Meet Link</th>
-                        <th scope="col">Action</th>
+                        {/* <th scope="col">Action</th> */}
                         </tr>
                     </thead>
                     <tbody>
-                        {/* {this.renderTable(this.state.ReliefCenterData)}   */}
+                        {this.renderTable(this.state.meetData)}  
                     </tbody>
                 </table>
             </div>
@@ -88,10 +83,10 @@ class AdminMeet extends Component{
         )
     }
     componentDidMount(){
-        fetch(reliefCenterGet, {method:'GET'})
+        fetch(meetGet, {method:'GET'})
         .then((res) => res.json ())
         .then((data) => {
-            this.setState({ReliefCenterData:data})
+            this.setState({meetData:data})
             console.log(data);
         })
     }
