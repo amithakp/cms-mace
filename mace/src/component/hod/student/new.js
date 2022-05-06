@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 const studentRegister ="http://localhost:4000/api/auth/studentRegister";
-
+// const studentRegister ="http://localhost:8020/student"
 class New  extends Component {
     constructor(props){
         super(props)

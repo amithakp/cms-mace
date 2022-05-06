@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
-const editStudent ="http://localhost:4000/api/auth/student";
-
+// const studentUrl ="http://localhost:4000/api/auth/student";
+const editStudent =`http://localhost:4000/api/auth/updateStudent`;
 class Edit extends Component {
     constructor(props){
         super(props)
         this.state = {
+            _id:'',
             name:'',
             registrationNumber:'',
-            department: '',
+            // department: '',
             course: '',
             semester: '',
             year:'',
@@ -22,26 +23,28 @@ class Edit extends Component {
                 'content-type': 'application/json'
             },
             body:JSON.stringify({
+                _id:event.target._id.value,
                 name:event.target.name.value,
                 registrationNumber:event.target.registrationNumber.value,
-                department:event.target.department.value,
+                // department:event.target.department.value,
                 course:event.target.course.value,
                 semester:event.target.semester.value,
-                year:event.target.course.year
+                year:event.target.course.value
             })
         })
         .then(res => res.json())
         .then((result) =>{
-            console.log(result,"inside handleEditReliefCentre")
-            this.setState({[this.state.name]:event.target.name,
+            console.log(result,"inside handleEditStudent")
+            this.setState({[this.state._id]:event.target._id,
+                [this.state.name]:event.target.name,
                 [this.state.registrationNumber]:event.target.registrationNumber,
-                [this.state.department]:event.target.department,
+                // [this.state.department]:event.target.department,
                 [this.state.course]:event.target.course,
                 [this.state.semester]:event.target.semester,
                 [this.state.year]:event.target.year
             })
         })
-        alert("Successfully Added")
+        alert("Successfully Updated")
     } 
 
     handleChange = (event) => {
@@ -65,6 +68,10 @@ class Edit extends Component {
                                     <div className="w-75 mx-auto shadow p-5">
                                         <h2 className="text-center mb-4">Edit Student</h2>
                                         <div className="mb-3">
+                                            <label>Student Id</label>
+                                            <input type="text" name="_id" disabled defaultValue={this.props._id} onChange={this.handleChange} className="form-control" placeholder="studentid" />
+                                        </div>
+                                        <div className="mb-3">
                                             <label>Name</label>
                                             <input type="text" name="name" defaultValue={this.props.name} onChange={this.handleChange} className="form-control" placeholder="name" />
                                         </div>
@@ -72,15 +79,15 @@ class Edit extends Component {
                                             <label>Register No</label>
                                             <input type="text" name="registrationNumber" defaultValue={this.props.registrationNumber} onChange={this.handleChange} className="form-control" placeholder="registrationNumber" />
                                         </div>
+                                        {/*
                                         <div className="mb-3">
                                             <label>Department</label>
-                                            {/* <input type="text" name="reliefCenterName" value={this.state.reliefCenterName} onChange={this.handleChange} className="form-control" placeholder="Relief centre name"/> */}
                                             <select id="options" name="department" defaultValue={this.props.department} onChange={this.handleChange} className="form-control">
                                                 <option>Select</option>
                                                 <option value="Computer Application">Computer Application</option>
                                                 <option value="Mechanical Engineering">Mechanical Engineering</option>
                                             </select>
-                                        </div>
+                                        </div>*/}
                                         <div className="mb-3">
                                             <label>Course</label>
                                             <input type="text" name="course" defaultValue={this.props.course} onChange={this.handleChange} className="form-control" placeholder="course"/>
@@ -112,6 +119,7 @@ class Edit extends Component {
             </>
         )
     }
+    
 }
 
 export default Edit;

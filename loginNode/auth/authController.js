@@ -128,6 +128,29 @@ router.post('/studentLogin',(req, res) => {
     })
 })
 
+// update student details
+router.put('/updateStudent/:id',(req,res) => {
+    // var _id = Number(req.params.id);
+    Student.updateOne(
+        {_id:req.params.id},            
+        { $set:{
+            name: req.body.name,
+            email: req.body.email,
+            registrationNumber: req.body.registrationNumber,
+            // department: req.body.department,
+            course: req.body.course,
+            semester: req.body.semester,
+            year: req.body.year,
+        }},(err,data) => {
+            if (err) return res.status(500).send('error while update')
+            res.status(200).send('Updated Successful')
+        }
+    )
+        
+})
+
+
+
 //get all teachers http://localhost:4000/api/auth/teacher
 router.get('/teacher',(req, res) => {
     Teacher.find({},(err,data) => {
@@ -248,7 +271,7 @@ router.get('/adminInfo',(req,res) => {
 
 
 //Student Profile  http://localhost:4000/api/auth/studentInfo
-router.get('/teacherInfo',(req,res) => {
+router.get('/studentInfo',(req,res) => {
     var token = req.headers['x-access-token']
     if(!token)  return res.status(500).send({auth:false,token:'No Token Provided'})
     // verify token

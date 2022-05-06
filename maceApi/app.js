@@ -63,7 +63,78 @@ app.put('/hod',(req,res) => {
     
         res.send('Updated Successful')
     })
+
+    // app.put('/updateStatus/:id',(req,res) => {
+    //     var id = Number(req.params.id);
+    //     var status = req.body.status?req.body.status:"Pending"
+    //     db.collection('orders').updateOne(
+    //         {id:id},
+    //         {
+    //             $set:{
+    //                 "date":req.body.date,
+    //                 "bank_status":req.body.bank_status,
+    //                 "bank":req.body.bank,
+    //                 "status":status
+    //             }
+    //         }
+    //     )
+    //     res.send('data updated')
+    // })
+
+    // update student details
+    // app.put('/studentUpdate/:id',(req,res) => {
+    // var _id = Number(req.params.id);
+    // db.collection('student').updateOne(
+    //     {id:_id},            {
+    //             $set:{
+    //                 name: req.body.name,
+    //                 email: req.body.email,
+    //                 registrationNumber: req.body.registrationNumber,
+    //                 department: req.body.department,
+    //                 course: req.body.course,
+    //                 semester: req.body.semester,
+    //                 year: req.body.year,
+    //             }
+    //         })
     
+    //     res.send('Updated Successful')
+    // })
+
+/*
+app.post('/student',(req,res) => {
+    console.log(req.body);
+    db.collection('students').insert(req.body,(err,result)=>{
+        if(err) throw err;
+        res.send("student added")
+    })
+})
+//get student details
+app.get('/student',(req,res) => {
+    db.collection('students').find().toArray((err,result) => {
+        if(err) throw err;
+        res.send(result)
+    })
+})
+
+// update student details
+    app.put('/studentUpdate/:id',(req,res) => {
+    var _id = Number(req.params.id);
+    db.collection('students').updateOne(
+        {id:_id},            {
+                $set:{
+                    name: req.body.name,
+                    email: req.body.email,
+                    registrationNumber: req.body.registrationNumber,
+                    department: req.body.department,
+                    course: req.body.course,
+                    semester: req.body.semester,
+                    year: req.body.year,
+                }
+            })
+    
+        res.send('Updated Successful')
+    })
+*/
 // connecting with mongodb
 MongoClient.connect(mongoUrl, (err,client) => {
     if(err) console.log("Error While Connecting");

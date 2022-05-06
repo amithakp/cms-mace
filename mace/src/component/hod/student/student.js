@@ -4,11 +4,12 @@ import New  from './new';
 import Edit from './edit';
 
 const studentGet ="http://localhost:4000/api/auth/student";
-
+// const studentGet= "http://localhost:8020/student";
 class HodStudent extends Component{
     constructor(props){
         super(props)
         this.state = {
+            _id:'',
             name:'',
             registrationNumber:'',
             department: '',
@@ -34,10 +35,11 @@ class HodStudent extends Component{
                         <td>{item.year}</td>
                         <td>
                             <div className="btn-group" role="group" aria-label="Basic outlined example">
-                            <button  type="button" onClick={ () => this.setState({
+                            <button  type="button" onClick={ (param) => this.setState({
+                                _id:item._id,
                                 name:item.name,
                                 registrationNumber:item.registrationNumber,
-                                department:item.department,
+                                // department:item.department,
                                 course:item.course,
                                 semester:item.semester,
                                 year:item.year
@@ -46,8 +48,10 @@ class HodStudent extends Component{
                                 className="btn btn-outline-warning" data-bs-toggle="modal" data-bs-target="#editModal">
                                 Edit
                             </button>&nbsp;&nbsp;
-                            <Edit name={this.state.name}
+                            <Edit _id={this.state._id}
+                                name={this.state.name}
                                 registrationNumber={this.state.registrationNumber}
+                                // department={this.state.department}
                                 course={this.state.course}
                                 semester={this.state.semester}
                                 year= {this.state.year}

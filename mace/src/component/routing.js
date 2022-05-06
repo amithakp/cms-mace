@@ -54,6 +54,7 @@ import HodMeet from './hod/Meet/meet';
 import HodTimeTable from './hod/TimeTable/timeTable';
 import HodStudent from './hod/student/student';
 import HodMarks from './hod/Marks/marks';
+// import Edit from './hod/student/edit';
 const Routing = () => {
     return(
         <BrowserRouter>
@@ -109,6 +110,8 @@ const Routing = () => {
             <Route  path="/hodMeet" component={HodMeet}/>
             <Route  path="/hodTimeTable" component={HodTimeTable}/>
             <Route  path="/hodStudent" component={HodStudent}/>
+            {/* <Route  path="/hodStudent/:id" component={Edit}/> */}
+
             <Route  path="/hodMarks" component={HodMarks}/>
         </BrowserRouter>
     )
