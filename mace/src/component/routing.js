@@ -43,10 +43,10 @@ import TeacherHome  from './teacher/teacherHome';
 import TeacherBus from './teacher/Bus/bus';
 import TeacherMeet from './teacher/Meet/meet';
 import TeacherTimeTable from './teacher/TimeTable/timeTable';
-import TeacherNotes from './teacher/Notes/notes';
+import TeacherNotes from './teacher/Notes/noteNew';
 import TeacherAssignment from './teacher/Assignment/assignment';
 import TeacherMarks from './teacher/Marks/marks';
-
+// import Chat from './teacher/chat/chat';
 // hod
 import HodHome  from './hod/hodHome';
 import HodBus from './hod/Bus/bus';
@@ -103,7 +103,7 @@ const Routing = () => {
             <Route  path="/teacherNotes" component={TeacherNotes}/>
             <Route  path="/teacherAssignment" component={TeacherAssignment}/>
             <Route  path="/teacherMarks" component={TeacherMarks}/>
-
+            {/* <Route path="/teacherChatroom" component={Chat}/> */}
             {/* hod */}
             <Route  path="/hodredirect" component={HodHome}/>
             <Route  path="/hodBus" component={HodBus}/>

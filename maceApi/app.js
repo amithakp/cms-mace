@@ -1,4 +1,9 @@
 var express = require('express');
+const multer = require('multer');
+var fs = require('fs');
+var mongoose = require('mongoose');
+const imageModel = require('./model');
+var fileUpload = require('express-fileupload');
 var app = express();
 var dotenv = require('dotenv');
 var mongo = require('mongodb');
@@ -10,11 +15,15 @@ const bodyParser = require('body-parser')
 var port = process.env.PORT || 8024;
 //save db connection
 var db;
-
+app.use(fileUpload());
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
 app.use(cors());
 
+mongoose.connect(
+    "mongodb+srv://test:test@cluster0.vkjly.mongodb.net/mace?retryWrites=true&w=majority",
+    { useNewUrlParser: true, useUnifiedTopology: true }
+)
 
 app.get('/',(req,res) => {
     res.send("Hiii From Express..")
@@ -53,17 +62,82 @@ app.put('/hod',(req,res) => {
     // var id = Number(req.body.disaster_reliefCenterid);
     db.collection('hod').updateOne(
         // {id:disaster_reliefCenterid},
-            {
-                $set:{
-                    name:req.body.name,
-                    email:req.body.email,
-                    department:req.body.department
-                }
-            })
+        {
+            $set:{
+                name:req.body.name,
+                email:req.body.email,
+                department:req.body.department
+            }
+        })
     
-        res.send('Updated Successful')
-    })
+    res.send('Updated Successful')
+})
 
+
+//storage 
+app.get('/uploadGet', (req, res) => {
+    res.send("uploaded file ");
+});
+
+const storage = multer.diskStorage({
+    destination:(req, file, cb) => {
+        cb(null, 'uploads')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+});
+
+const upload = multer({ storage: storage})
+
+app.post('/uploadNote',upload.single('testImage'), (req,res) =>{
+    //save mongodb
+    const saveImage = new imageModel({
+        name: req.body.name,
+        img:{
+            data: fs.readFileSync("uploads/" + req.file.filename),
+            contentType: 'image/png',
+        },
+    });
+    saveImage
+    .save()
+    .then((res) => {
+        console.log(" image is saved");
+    })
+    .catch((err) => {
+        console.log(err, "error occured");
+    });
+    res.send("image is saved");
+});
+// file upload
+// app.post('/upload', (req,res, next) => {
+    // console.log(req.files);
+    // res.send({
+    //     success: true,
+    //     message: "File Uploaded"
+    // });
+
+// })
+// notes post
+app.post('/notes',(req,res) => {
+    console.log(req.body);
+    db.collection('notes').insertOne(req.body,(err,result)=>{
+        if(err) throw err;
+        res.send("note uploaded")
+    })
+})
+//get note details
+app.get('/notes',(req,res) => {
+    db.collection('notes').find().toArray((err,result) => {
+        if(err) throw err;
+        res.send(result)
+    })
+})
+
+// download notes 
+app.get('/noteDownloaded',(req,res) => {
+    res.download("assignment.txt");
+})
     // app.put('/updateStatus/:id',(req,res) => {
     //     var id = Number(req.params.id);
     //     var status = req.body.status?req.body.status:"Pending"
